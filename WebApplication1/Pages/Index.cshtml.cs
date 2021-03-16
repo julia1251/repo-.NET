@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace WebApplication1.Pages
 {
@@ -36,9 +38,11 @@ namespace WebApplication1.Pages
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                HttpContext.Session.SetString("SessionAddress",
+            JsonConvert.SerializeObject(Address));
+                return RedirectToPage("./AddressList");
             }
-            return RedirectToPage("./Privacy");
+            return Page();
         }
 
     }
