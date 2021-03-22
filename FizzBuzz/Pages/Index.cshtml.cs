@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace FizzBuzz.Pages
 {
@@ -21,27 +23,49 @@ namespace FizzBuzz.Pages
 
 
         public string Name { get; set; }
+        
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
-
+        public int liczba;
+        public int Wynik(Liczba)
+        {
+                if (liczba % 3 == 0 && liczba % 5 == 0)
+                {
+                    Console.WriteLine("fizzbuzz");
+                }
+                else if (liczba % 3 == 0)
+                {
+                    Console.WriteLine("fizz");
+                }
+                else if (liczba % 5 == 0)
+                {
+                    Console.WriteLine("buzz");
+                }
+                else
+                {
+                    Console.WriteLine(liczba);
+                }
+        }
         public void OnGet()
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
                 Name = "User";
             }
+            
         }
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Page();
+                HttpContext.Session.SetString("SessionLiczba", JsonConvert.SerializeObject(Liczba));
+                return RedirectToPage("./Ostatnio Szukane");
             }
-            return RedirectToPage("./Ostatnio Szukane");
+            return Page();
         }
 
     }

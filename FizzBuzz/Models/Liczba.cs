@@ -7,6 +7,6 @@ namespace FizzBuzz.Models
 {
     public class Liczba
     {
-        public int Number { get; set; }
+        public int liczba { get; set; }
     }
 }
