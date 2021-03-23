@@ -30,32 +30,32 @@ namespace FizzBuzz.Pages
             _logger = logger;
         }
         public int liczba;
-        public int Wynik(Liczba)
+        public int Wynik()
         {
-                if (liczba % 3 == 0 && liczba % 5 == 0)
+            string result = "";
+                if (liczba % 3 == 0)
                 {
-                    Console.WriteLine("fizzbuzz");
+                    result+="fizz";
                 }
-                else if (liczba % 3 == 0)
+                if (liczba % 5 == 0)
                 {
-                    Console.WriteLine("fizz");
+                    result+="buzz";
                 }
-                else if (liczba % 5 == 0)
+                if(!(liczba % 3 == 0) && !(liczba % 5 == 0))
                 {
-                    Console.WriteLine("buzz");
+                result = Convert.ToString(liczba);
                 }
-                else
-                {
-                    Console.WriteLine(liczba);
-                }
+            return Convert.ToInt32(result);
         }
+        public string wynik;
         public void OnGet()
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
                 Name = "User";
             }
-            
+            wynik = Convert.ToString(Wynik());
+            HttpContext.Session.SetString("Wynik",JsonConvert.SerializeObject(wynik));
         }
 
         public IActionResult OnPost()

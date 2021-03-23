@@ -1,14 +1,14 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http;
 @model FizzBuzz.Pages.LiczbaModel
-@{
-    ViewData["Title"] = "Ostatnio Szukane";
-}
-<p>Dane w zapisane w sesji:</p>
-@if (Model.Liczba != null)
-{
-    <p>
-        @Html.DisplayNameFor(model => Model.Liczba):
-    @Model.Liczba
-</p>
-}
-
+    @{
+        ViewData["Title"] = "Ostatnio Szukane";
+    }
+    <p>Dane w zapisane w sesji:</p>
+    @if (Model.Liczba != null)
+    {
+        <p>
+            @Html.DisplayNameFor(model => Model.Liczba):
+            @Model.Liczba
+        </p>
+    }
