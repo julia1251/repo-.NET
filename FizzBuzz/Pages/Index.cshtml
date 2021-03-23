@@ -9,6 +9,7 @@
     <form method="post">
         <label asp-for="Liczba.liczba"></label>
         <input asp-for="Liczba.liczba" /><br />
+        <span asp-validation-for="Liczba.liczba" class="text-danger"></span>
         <button type="submit">Zatwierdź</button>
     </form>
 </div>

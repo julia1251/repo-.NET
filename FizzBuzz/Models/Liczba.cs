@@ -8,7 +8,7 @@ namespace FizzBuzz.Models
 {
     public class Liczba
     {
-        [Required]
+        [Range(1,1000)]
         public int liczba { get; set; }
         
     }
