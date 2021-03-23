@@ -19,18 +19,12 @@ namespace FizzBuzz.Pages
 
         public Liczba Liczba { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-
-
-        public string Name { get; set; }
-        
-
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
-        public int liczba;
-        public int Wynik()
+
+        public string Wynik(int liczba)
         {
             string result = "";
                 if (liczba % 3 == 0)
@@ -41,21 +35,16 @@ namespace FizzBuzz.Pages
                 {
                     result+="buzz";
                 }
-                if(!(liczba % 3 == 0) && !(liczba % 5 == 0))
+                if((liczba % 3 != 0) && (liczba % 5 != 0))
                 {
-                result = Convert.ToString(liczba);
+                    result = Convert.ToString(liczba);
                 }
-            return Convert.ToInt32(result);
+            return result;
         }
         public string wynik;
         public void OnGet()
         {
-            if (string.IsNullOrWhiteSpace(Name))
-            {
-                Name = "User";
-            }
-            wynik = Convert.ToString(Wynik());
-            HttpContext.Session.SetString("Wynik",JsonConvert.SerializeObject(wynik));
+            
         }
 
         public IActionResult OnPost()
@@ -63,8 +52,11 @@ namespace FizzBuzz.Pages
             if (ModelState.IsValid)
             {
                 HttpContext.Session.SetString("SessionLiczba", JsonConvert.SerializeObject(Liczba));
-                return RedirectToPage("./Ostatnio Szukane");
+                wynik = Wynik(Liczba.liczba);
+                HttpContext.Session.SetString("Wynik", wynik);
+                // return RedirectToPage("./Liczba");
             }
+
             return Page();
         }
 

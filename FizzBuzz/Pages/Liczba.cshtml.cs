@@ -21,7 +21,7 @@ namespace FizzBuzz.Pages
             _logger = logger;
         }
         public Liczba Liczba { get; set; }
-        public string sessionLiczba { get; private set; }
+        public string SessionLiczba { get; private set; }
 
         public void OnGet()
         {
@@ -29,7 +29,7 @@ namespace FizzBuzz.Pages
             HttpContext.Session.GetString("SessionLiczba");
 if (SessionLiczba != null)
                 Liczba =
-                JsonConvert.DeserializeObject<Liczba>(sessionLiczba);
+                JsonConvert.DeserializeObject<Liczba>(SessionLiczba);
         }
     }
 }
