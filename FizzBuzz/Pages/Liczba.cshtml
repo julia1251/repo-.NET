@@ -11,4 +11,7 @@
         @Html.DisplayNameFor(model => Model.Liczba.liczba):
         @Model.Liczba.liczba
     </p>
- }
+}
+Wynik: @HttpContext.Session.GetString("Wynik")
+<br />
+Data: @HttpContext.Session.GetString("Data")

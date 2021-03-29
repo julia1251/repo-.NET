@@ -54,6 +54,7 @@ namespace FizzBuzz.Pages
                 HttpContext.Session.SetString("SessionLiczba", JsonConvert.SerializeObject(Liczba));
                 wynik = Wynik(Liczba.liczba);
                 HttpContext.Session.SetString("Wynik", wynik);
+                HttpContext.Session.SetString("Data", DateTime.Now.ToString());
                 // return RedirectToPage("./Liczba");
             }
 

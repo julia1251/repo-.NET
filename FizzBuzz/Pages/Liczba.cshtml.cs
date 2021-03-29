@@ -27,7 +27,7 @@ namespace FizzBuzz.Pages
         {
             var SessionLiczba =
             HttpContext.Session.GetString("SessionLiczba");
-if (SessionLiczba != null)
+            if (SessionLiczba != null)
                 Liczba =
                 JsonConvert.DeserializeObject<Liczba>(SessionLiczba);
         }
