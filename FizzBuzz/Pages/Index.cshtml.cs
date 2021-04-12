@@ -8,21 +8,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using FizzBuzz.Pages.Data;
 
 namespace FizzBuzz.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly WyszukanieContext _context;
+
+        public IndexModel(ILogger<IndexModel> logger, WyszukanieContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
 
         [BindProperty]
 
         public Liczba Liczba { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
 
         public string Wynik(int liczba)
         {
@@ -42,6 +46,7 @@ namespace FizzBuzz.Pages
             return result;
         }
         public string wynik;
+
         public void OnGet()
         {
             
@@ -55,7 +60,11 @@ namespace FizzBuzz.Pages
                 wynik = Wynik(Liczba.liczba);
                 HttpContext.Session.SetString("Wynik", wynik);
                 HttpContext.Session.SetString("Data", DateTime.Now.ToString());
-                // return RedirectToPage("./Liczba");
+                Liczba.Wynik = wynik;
+                Liczba.DataWyszukania = DateTime.Now;
+                _context.Liczby.Add(Liczba);
+                _context.SaveChanges();
+
             }
 
             return Page();

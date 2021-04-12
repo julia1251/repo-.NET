@@ -1,0 +1,15 @@
+﻿@page
+@model FizzBuzz.Pages.OstatnieModel
+@{
+}
+
+@foreach (var item in Model.Liczby)
+{
+    <p>
+        @Html.DisplayFor(modelItem => item.liczba)
+        @Html.DisplayFor(modelItem => item.Wynik)
+        @Html.DisplayFor(modelItem => item.DataWyszukania)
+
+    </p>
+}
+
