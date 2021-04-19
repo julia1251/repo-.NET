@@ -17,6 +17,9 @@ namespace FizzBuzz.Pages
         private readonly ILogger<OstatnieModel> _logger;
         private readonly WyszukanieContext _context;
 
+        [BindProperty]
+        public int wyszukanie { get; set; }
+
         public OstatnieModel(ILogger<OstatnieModel> logger, WyszukanieContext context)
         {
             _logger = logger;
@@ -29,5 +32,15 @@ namespace FizzBuzz.Pages
             Liczby = _context.Liczby.OrderByDescending(m => m.DataWyszukania).Take(10).ToList();
         }
 
+        public IActionResult OnPost()
+        {
+            _context.Liczby.Remove(new Liczba() { Id = wyszukanie });
+            _context.SaveChanges();
+
+            return RedirectToPage();
+        }
+
     }
 }
+
+

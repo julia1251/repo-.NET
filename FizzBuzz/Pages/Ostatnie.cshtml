@@ -1,15 +1,49 @@
 ﻿@page
 @model FizzBuzz.Pages.OstatnieModel
 @{
+    ViewData["Title"] = "Ostatnio Szukane";
 }
 
-@foreach (var item in Model.Liczby)
-{
-    <p>
-        @Html.DisplayFor(modelItem => item.liczba)
-        @Html.DisplayFor(modelItem => item.Wynik)
-        @Html.DisplayFor(modelItem => item.DataWyszukania)
+    @if (Model.Liczby?.Count > 0)
+    {
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Liczba</th>
+                    <th>Wynik</th>
+                    <th>Data</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.Liczby)
+            {
+                <tbody class="table-hover">
+                    <tr>
+                        <td>@item.liczba</td>
+                        <td>@item.Wynik</td>
+                        <td>@item.DataWyszukania</td>
+                        <td>
+                            <form id="deleteForm" method="POST">
+                                <input type="hidden" asp-for="wyszukanie" value="@item.Id" />
+                                <a href="#" onclick="javascript:$('#deleteForm').submit()">Usuń</a>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            }
 
-    </p>
-}
+        </table>
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
