@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using FizzBuzz.Pages.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FizzBuzz.Pages
 {
+    [Authorize]
     public class OstatnieModel : PageModel
     {
         private readonly ILogger<OstatnieModel> _logger;
