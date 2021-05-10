@@ -31,7 +31,7 @@ namespace FizzBuzz.Pages
 
         public void OnGet()
         {
-            Liczby = _context.Liczby.OrderByDescending(m => m.DataWyszukania).Take(10).ToList();
+            Liczby = _context.Liczby.OrderByDescending(m => m.DataWyszukania).Take(20).ToList();
         }
 
         public IActionResult OnPost()
